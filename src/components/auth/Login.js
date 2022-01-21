@@ -1,6 +1,6 @@
 import logo from '../../images/HCC-logo-white.png';
 import './Login.css';
-import { Button, Input, InputGroup } from 'reactstrap';
+import { Input, InputGroup } from 'reactstrap';
 import React from "react"
 import { useNavigate } from 'react-router-dom';
 
@@ -14,20 +14,15 @@ function Login() {
                 <div className="login">
                     <p>Employee Portal</p>
                     <InputGroup>
-                        <Input id="employee_id" placeholder="Employee #"
-                            onKeyPress={(e) => {
-                                if (e.key === 'Enter' && (parseInt(document.getElementById("employee_id").value) === 1252)) {
+                        <Input type="password" id="employee_id" placeholder="Employee #"
+                            onKeyUp={(e) => {
+                                const input = document.getElementById("employee_id").value
+                                const number = parseInt(input)
+                                if (input.length === 4 && number === 1252) {
                                     navigate('/profile')
                                 }
+                                
                             }} />
-                        <Button onClick={() => {
-
-                            if (parseInt(document.getElementById("employee_id").value) === 1252) {
-                                navigate('/profile')
-
-                            }
-
-                        }}>Enter</Button>
                     </InputGroup>
 
                 </div>
